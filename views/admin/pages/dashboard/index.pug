@@ -6,7 +6,7 @@ block main
         div.status
             div.header
                 h4#big Các danh mục
-                h4#small Hoạt động hằng tuần
+                //- h4#small Hoạt động hằng tuần
             div.items-list
                 div.item
                     div.info
@@ -30,7 +30,12 @@ block main
                             p - Số đơn hàng được đặt: #{statistic.order.active}
                             p - Số đơn hàng bị hủy : #{statistic.order.inactive}
                 div.item
-                    canvas.activity-chart
+                    //- canvas.activity-chart
+                    div.info
+                        div
+                            h5 Doanh thu 
+                            h3 117.000.000 VNĐ
+                            
 
     div.bottom-container
         div.prog-status

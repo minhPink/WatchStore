@@ -6,7 +6,6 @@ body {
   padding: 0;
 }
 
-/* Bao bọc toàn bộ các quy tắc CSS trong .login-page */
 .login-page * {
   box-sizing: border-box;
 }
@@ -131,6 +130,7 @@ body {
   background: #202020;
   padding: 20px 0;
   position: sticky;
+  width: 100%;
   top: 0;
   z-index: 9999;
 }
@@ -205,7 +205,7 @@ body {
 
 /* Success notification - green background */
 .message.info #alert.success {
-  background-color: #28a745; /* Xanh lá */
+  background-color: #28a745;
   border-color: #28a745;
 }
 
@@ -221,7 +221,7 @@ body {
 
 /* Danger notification - red background */
 .message.info #alert.danger {
-  background-color: #dc3545; /* Đỏ */
+  background-color: #dc3545;
   border-color: #dc3545;
 }
 
@@ -370,7 +370,7 @@ body {
 }
 
 .top-container .status .items-list .item:nth-child(4) {
-  background: #031224;
+  background: #e0f2fe;
   padding: 10px;
 }
 

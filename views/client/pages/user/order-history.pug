@@ -1,6 +1,7 @@
 extends ../../layouts/default.pug 
 include ../../mixins/box-head.pug 
 include ../../mixins/alert.pug
+include ../../mixins/moment.pug
 
 block main 
     +alert-success()
@@ -15,7 +16,9 @@ block main
             each order, index in orders
                 .order-card
                     .order-header
-                        h4 Đơn hàng số #{index+1}
+                        h4 Đơn hàng số #{index+1} 
+                            h5
+                                +formatDateTime(order.createdAt)
                         if order.status === "pending"
                             span.status.pending Chờ xử lý
                         else if order.status === "delivering"

@@ -20,17 +20,17 @@ block main
                 )
                     thead
                         tr  
-                            th.text-center STT 
-                            th.text-center Nhóm quyền 
-                            th.text-center Mô tả ngắn
-                            th.text-center Hành động
+                            th.text-center.align-middle STT 
+                            th.text-center.align-middle Nhóm quyền 
+                            th.text-center.align-middle Mô tả ngắn
+                            th.text-center.align-middle Hành động
                     tbody
                         each item, index in records
                             tr
-                                td.text-center #{index + 1}
-                                td.text-center #{item.title}
-                                td.text-center #{item.description}
-                                td.text-center  
+                                td.text-center.align-middle #{index + 1}
+                                td.text-center.align-middle #{item.title}
+                                td.text-center.align-middle #{item.description}
+                                td.text-center.align-middle 
                                     a(  
                                         href=`${prefixAdmin}/roles/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"

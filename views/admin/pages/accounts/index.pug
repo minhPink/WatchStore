@@ -19,28 +19,28 @@ block main
                 )
                     thead
                         tr  
-                            th.text-center STT 
-                            th.text-center Avatar
-                            th.text-center Họ tên
-                            th.text-center Phân quyền
-                            th.text-center Email
-                            th.text-center Trạng thái 
-                            th.text-center Hành động
+                            th.text-center.align-middle STT 
+                            th.text-center.align-middle Avatar
+                            th.text-center.align-middle Họ tên
+                            th.text-center.align-middle Phân quyền
+                            th.text-center.align-middle Email
+                            th.text-center.align-middle Trạng thái 
+                            th.text-center.align-middle Hành động
                     tbody
                         each item, index in records
                             tr
-                                td.text-center #{index + 1}
-                                td.text-center 
+                                td.text-center.align-middle #{index + 1}
+                                td.text-center.align-middle 
                                     img(
                                         src=item.avatar, 
                                         alt="",
                                         width= "100px",
                                         height= "80px"
                                         )
-                                td.text-center #{item.fullName}
-                                td.text-center #{item.role.title}
-                                td.text-center #{item.email}
-                                td.text-center
+                                td.text-center.align-middle #{item.fullName}
+                                td.text-center.align-middle #{item.role.title}
+                                td.text-center.align-middle #{item.email}
+                                td.text-center.align-middle
                                     if(item.status == "active")
                                         a(
                                             href="javascript:;"
@@ -57,7 +57,7 @@ block main
                                             button-change-status
                                             class="badge badge-danger"
                                         ) Dừng hoạt động
-                                td.text-center  
+                                td.text-center.align-middle  
                                     a(  
                                         href=`${prefixAdmin}/products/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"

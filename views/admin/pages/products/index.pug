@@ -50,40 +50,35 @@ block main
                 )
                     thead
                         tr  
-                            th.text-center
+                            th.text-center.align-middle
                                 input(type="checkbox" name="checkall")
-                            th.text-center STT 
-                            th.text-center Hình ảnh 
-                            th.text-center Tiêu đề
-                            th.text-center Vị trí
-                            th.text-center Trạng thái 
-                            th.text-center Người tạo
-                            th.text-center Người cập nhật
-                            th.text-center Hành động
+                            th.text-center.align-middle STT 
+                            th.text-center.align-middle Hình ảnh 
+                            th.text-center.align-middle Tiêu đề
+                            th.text-center.align-middle Số lượng
+                            th.text-center.align-middle Đã bán
+                            th.text-center.align-middle Trạng thái 
+                            th.text-center.align-middle Người tạo
+                            th.text-center.align-middle Người cập nhật
+                            th.text-center.align-middle Hành động
                     tbody
                         each item, index in products
                             tr
-                                td.text-center 
+                                td.text-center.align-middle
                                      input(type="checkbox" name="id"
                                      value=item.id)
-                                td.text-center #{objectPagination.limitProduct * (objectPagination.currentPage - 1) + (index + 1)}
-                                td.text-center 
+                                td.text-center.align-middle #{objectPagination.limitProduct * (objectPagination.currentPage - 1) + (index + 1)}
+                                td.text-center.align-middle 
                                     img(
                                         src=item.thumbnail, 
                                         alt=item.title,
                                         width= "100px",
                                         height= "80px"
                                         )
-                                td.text-center #{item.title}
-                                td.text-center 
-                                    input(
-                                        type="number"
-                                        value=item.position 
-                                        style="width: 40px"
-                                        name="position"
-                                        min=1
-                                    )
-                                td.text-center 
+                                td.text-center.align-middle #{item.title}
+                                td.text-center.align-middle #{item.stock} 
+                                th.text-center.align-middle #{item.sold}
+                                td.text-center.align-middle 
                                     if(item.status == "active")
                                         a(
                                             href="javascript:;"
@@ -100,17 +95,17 @@ block main
                                             button-change-status
                                             class="badge badge-danger"
                                         ) Dừng hoạt động
-                                td.text-center 
+                                td.text-center.align-middle 
                                     p #{item.accountFullName} 
                                     p
                                         +formatDateTime(item.createdBy.createdAt)
-                                td.text-center 
+                                td.text-center.align-middle
                                     - const updatedBy = item.updatedBy[item.updatedBy.length-1];
                                     if(updatedBy)
                                         p #{updatedBy.accountFullName} 
                                         p
                                             +formatDateTime(updatedBy.updatedAt)
-                                td.text-center  
+                                td.text-center.align-middle  
                                     a(  
                                         href=`${prefixAdmin}/products/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"

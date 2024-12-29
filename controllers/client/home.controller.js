@@ -3,29 +3,46 @@ const productHelper = require("../../helpers/product");
 const formSelectHelper = require("../../helpers/formSelect");
 //[GET] /
 module.exports.index = async (req, res) => {
-    // Lay ra san pham noi bat
-    const productFeatured = await Product.find({
-        featured: "1",
-        deleted: false,
-        status: "active"
-    }).limit(4);
+  let sortSold = {
+    sold: "desc",
+  };
+  // Lay ra san pham noi bat
+  const productFeatured = await Product.find({
+    deleted: false,
+    status: "active",
+  })
+    .sort(sortSold)
+    .limit(4);
 
-    const newProducts = productHelper.priceNewProducts(productFeatured);
+  const featuredProductIds = productFeatured.map((product) => product._id);
+  await Product.updateMany(
+    { _id: { $in: featuredProductIds } },
+    { $set: { featured: "1" } }
+  );
 
-    // Lay ra san pham moi nhat
+  await Product.updateMany(
+    { _id: { $nin: featuredProductIds } },
+    { $set: { featured: "0" } }
+  );
 
-    //sort-select
-    let sort = formSelectHelper(req);
+  const newProducts = productHelper.priceNewProducts(productFeatured);
 
-    const productsNew = await Product.find({
-        deleted: false,
-        status: "active"
-    }).sort(sort).limit(20);
+  // Lay ra san pham moi nhat
 
-    const newProductsNew = productHelper.priceNewProducts(productsNew);
-    res.render("client/pages/home/index", {
-        pageTitle: "Trang chủ",
-        productsFeatured: newProducts,
-        productsNew: newProductsNew
-    })
+  //sort-select
+  let sort = formSelectHelper(req);
+
+  const productsNew = await Product.find({
+    deleted: false,
+    status: "active",
+  })
+    .sort(sort)
+    .limit(8);
+
+  const newProductsNew = productHelper.priceNewProducts(productsNew);
+  res.render("client/pages/home/index", {
+    pageTitle: "Trang chủ",
+    productsFeatured: newProducts,
+    productsNew: newProductsNew,
+  });
 };

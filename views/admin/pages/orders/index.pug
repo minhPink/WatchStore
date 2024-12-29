@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/moment.pug
 
 block main 
 
@@ -15,19 +16,26 @@ block main
                 )
                     thead 
                         tr 
-                            th.text-center STT 
-                            th.text-center Tên người đặt hàng
-                            th.text-center Giá tiền 
-                            th.text-center Địa chỉ
-                            th.text-center Trạng thái
+                            th.text-center.align-middle STT 
+                            th.text-center.align-middle Tên người đặt hàng
+                            th.text-center.align-middle Sản phẩm
+                            th.text-center.align-middle Giá tiền 
+                            th.text-center.align-middle Địa chỉ
+                            th.text-center.align-middle Thời gian đặt
+                            th.text-center.align-middle Trạng thái
                     tbody 
                         each order, index in orders 
                             tr 
-                                td.text-center #{index + 1} 
-                                td.text-center #{order.userInfo.fullName}
-                                td.text-center #{order.totalPrice.toLocaleString('vi-VN')} VNĐ
-                                td.text-center #{order.userInfo.address}
-                                td.text-center 
+                                td.text-center.align-middle #{index + 1} 
+                                td.text-center.align-middle #{order.userInfo.fullName}
+                                td.text-center.align-middle
+                                    each product in order.products
+                                        p #{product.productInfo.title} x#{product.quantity}
+                                td.text-center.align-middle #{order.totalPrice.toLocaleString('vi-VN')} VNĐ
+                                td.text-center.align-middle #{order.userInfo.address}
+                                td.text-center.align-middle
+                                    +formatDateTime(order.createdAt)
+                                td.text-center.align-middle
                                     select(
                                         data-id=order.id
                                         name="order-status"
