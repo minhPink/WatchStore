@@ -30,7 +30,6 @@ block main
                             p - Số đơn hàng được đặt: #{statistic.order.active}
                             p - Số đơn hàng bị hủy : #{statistic.order.inactive}
                 div.item
-                    //- canvas.activity-chart
                     div.info
                         div
                             h5 Doanh thu 
@@ -44,6 +43,15 @@ block main
                 div.tabs
                     a.active(href="#") 1 năm
             canvas.prog-chart
+        div.prog-status
+            div.header
+                h4 Biểu đồ top sản phẩm bán chạy
+                div.tabs
+            canvas.prog-chart2
+    each product in productFeatured
+        div(class="product" data-product=product.sold)
+        div(class="product" data-title=product.title)
+        
 
 
     script(src="https://cdn.jsdelivr.net/npm/chart.js") 

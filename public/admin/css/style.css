@@ -371,7 +371,6 @@ body {
 
 .top-container .status .items-list .item:nth-child(4) {
   background: #e0f2fe;
-  padding: 10px;
 }
 
 .top-container .status .items-list .item .info {
@@ -464,8 +463,13 @@ body {
 }
 
 .bottom-container .prog-status {
-  width: 100%;
+  width: 50%;
   height: auto;
+}
+
+.bottom-container .prog-status .prog-chart2 {
+  height: 300px;
+  width: auto;
 }
 
 .bottom-container .prog-status .header,
