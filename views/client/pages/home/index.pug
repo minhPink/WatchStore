@@ -8,7 +8,7 @@ block main
     +alert-success()
     
     include ../../partials/swiperintroduce.pug
-    .container.my-3.hot
+    .container.my-3.hot#products
         .row 
             .col-12 
                 +box-head("⚡️ Sản phẩm bán chạy 🔥")
@@ -23,6 +23,7 @@ block main
             .col-4
                 +sort-select()
         +product-grid(productsNew)
+
         if(productsNew.length > 4)
             button#see-more-btn Xem thêm sản phẩm
     hr

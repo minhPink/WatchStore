@@ -37,7 +37,7 @@ module.exports.index = async (req, res) => {
     status: "active",
   })
     .sort(sort)
-    .limit(8);
+    .limit(20);
 
   const newProductsNew = productHelper.priceNewProducts(productsNew);
   res.render("client/pages/home/index", {
