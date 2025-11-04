@@ -1,0 +1,17 @@
+#chatbot-container
+  #chatbot-button
+    img(src="/images/imageai.png" alt="Chatbot Icon")
+
+  #chatbox.hidden
+    #chatbox-header
+      span Chatbot
+      button#close-chat ✖
+
+    #chat_container
+
+    form.formGpt
+      textarea(name="prompt" rows="1" cols="1" placeholder="Mời bạn đặt câu hỏi...")
+      button(type="submit")
+        img(src="/images/send.svg" alt="send")
+//- block script
+//-     script(src="/js/chatgpt.js")

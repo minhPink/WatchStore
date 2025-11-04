@@ -14,17 +14,17 @@ block main
                 .chat-gpt
                     #app
                         #chat_container
-                            //- .wrapper
-                            //-     .chat
-                            //-         .profile
-                            //-             img(src="/images/user.svg" alt="user")
-                            //-         .message Hello, how are you?
+                            .wrapper
+                                .chat
+                                    .profile
+                                        img(src="/images/user.svg" alt="user")
+                                    .message Hello, how are you?
 
-                            //- .wrapper.ai
-                            //-     .chat
-                            //-         .profile
-                            //-             img(src="/images/bot.svg" alt="bot")
-                            //-         .message I'm fine, thank you! How can I assist you today?
+                            .wrapper.ai
+                                .chat
+                                    .profile
+                                        img(src="/images/bot.svg" alt="bot")
+                                    .message I'm fine, thank you! How can I assist you today?
 
                         form.formGpt
                             textarea(name="prompt" rows="1" cols="1" placeholder="Mời bạn đặt câu hỏi...")
