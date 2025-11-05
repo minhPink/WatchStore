@@ -27,8 +27,8 @@ module.exports.dashboard = async (req, res) => {
     },
     order: {
       total: 0,
-      active: 0,
-      inactive: 0,
+      success: 0,
+      refuse: 0,
     },
   };
   statistic.categoryProduct.total = await ProductCategory.countDocuments({
@@ -56,11 +56,13 @@ module.exports.dashboard = async (req, res) => {
   });
 
   statistic.order.total = await Order.countDocuments({});
-  statistic.order.active = await Order.countDocuments({
+  statistic.order.success = await Order.countDocuments({
     deleted: false,
+    status: "success",
   });
-  statistic.order.inactive = await Order.countDocuments({
-    deleted: true,
+  statistic.order.refuse = await Order.countDocuments({
+    deleted: false,
+    status: "refuse",
   });
 
   let sortSold = {
@@ -74,9 +76,25 @@ module.exports.dashboard = async (req, res) => {
     .sort(sortSold)
     .limit(4);
 
+  let completedOrder = await Order.find({
+    deleted: false,
+    status: "success",
+  });
+
+  const totalRevenue = completedOrder.reduce((acc, order) => {
+    const orderTotal = order.products.reduce((sum, product) => {
+      const priceAfterDiscount =
+        product.price -
+        (product.price * (product.discountPercentage || 0)) / 100;
+      return sum + priceAfterDiscount * product.quantity;
+    }, 0);
+    return acc + orderTotal;
+  }, 0);
+
   res.render("admin/pages/dashboard/index", {
     pageTitle: "Trang tổng quan",
     statistic: statistic,
     productFeatured: productFeatured,
+    totalRevenue: totalRevenue,
   });
 };

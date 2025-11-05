@@ -27,13 +27,13 @@ block main
                         div
                             h5 Đơn hàng
                             p - Tổng số đơn hàng :#{statistic.order.total}
-                            p - Số đơn hàng được đặt: #{statistic.order.active}
-                            p - Số đơn hàng bị hủy : #{statistic.order.inactive}
+                            p - Số đơn hàng thành công : #{statistic.order.success}
+                            p - Số đơn hàng bị hủy : #{statistic.order.refuse}
                 div.item
                     div.info
                         div
                             h5 Doanh thu
-                            h3 117.169.000 VNĐ
+                            h3 #{totalRevenue.toLocaleString('vi-VN')} VNĐ
 
 
     div.bottom-container
