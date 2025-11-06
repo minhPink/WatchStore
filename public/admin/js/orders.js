@@ -27,7 +27,7 @@ if (listSelectStatus) {
     changeSelectColor(selectStatus, initialStatus);
 
     // Vô hiệu hóa nếu trạng thái ban đầu là success
-    if (initialStatus === "success") {
+    if (initialStatus === "success" || initialStatus === "refuse") {
       selectStatus.disabled = true;
     }
 

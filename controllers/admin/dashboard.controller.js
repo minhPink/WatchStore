@@ -1,6 +1,7 @@
 const ProductCategory = require("../../models/product-category.model");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
+const productHelper = require("../../helpers/product");
 
 // [GET] admin/dashboard
 module.exports.dashboard = async (req, res) => {
@@ -76,16 +77,14 @@ module.exports.dashboard = async (req, res) => {
     .sort(sortSold)
     .limit(4);
 
-  let completedOrder = await Order.find({
+  let completedOrders = await Order.find({
     deleted: false,
     status: "success",
   });
 
-  const totalRevenue = completedOrder.reduce((acc, order) => {
+  const totalRevenue = completedOrders.reduce((acc, order) => {
     const orderTotal = order.products.reduce((sum, product) => {
-      const priceAfterDiscount =
-        product.price -
-        (product.price * (product.discountPercentage || 0)) / 100;
+      const priceAfterDiscount = productHelper.priceNewProduct(product);
       return sum + priceAfterDiscount * product.quantity;
     }, 0);
     return acc + orderTotal;
