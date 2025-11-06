@@ -1,29 +1,26 @@
 const ctx = document.querySelector(".prog-chart");
 
+// Lấy tất cả các div.month
+const monthElements = document.querySelectorAll(".month");
+
+const labelsMonth = [];
+const revenues = [];
+
+monthElements.forEach((element) => {
+  const month = parseInt(element.dataset.month);
+  const revenue = parseInt(element.dataset.revenue);
+  labelsMonth.push(`T${month}`);
+  revenues.push(revenue);
+});
+
 new Chart(ctx, {
   type: "bar",
   data: {
-    labels: [
-      "T1",
-      "T2",
-      "T3",
-      "T4",
-      "T5",
-      "T6",
-      "T7",
-      "T8",
-      "T9",
-      "T10",
-      "T11",
-      "T12",
-    ],
+    labels: labelsMonth,
     datasets: [
       {
         label: "Doanh thu (VNĐ)",
-        data: [
-          6000000, 10000000, 8000000, 14000000, 6000000, 7000000, 4000000,
-          8000000, 15000000, 18000000, 14000000, 9000000,
-        ],
+        data: revenues,
         borderColor: "#0891b2",
         tension: 0.4,
       },

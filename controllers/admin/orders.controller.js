@@ -17,11 +17,13 @@ module.exports.index = async (req, res) => {
       );
     }
   }
+
   res.render("admin/pages/orders/index", {
     pageTile: "Đơn hàng",
     orders: orders,
   });
 };
+
 // [PATCH] /admin/orders/change-status/:status/:id
 module.exports.patchStatus = async (req, res) => {
   try {

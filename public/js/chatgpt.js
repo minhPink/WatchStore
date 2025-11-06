@@ -196,7 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       clearInterval(loadInterval);
-      messageDiv.innerHTML = "Không thể kết nối server!";
+      messageDiv.innerHTML =
+        "Bạn vui lòng đăng nhập tài khoản để sử dụng chức năng này !";
       console.error(error);
     }
 

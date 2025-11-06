@@ -2,6 +2,7 @@ const ProductCategory = require("../../models/product-category.model");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
 const productHelper = require("../../helpers/product");
+const orderHelper = require("../../helpers/order");
 
 // [GET] admin/dashboard
 module.exports.dashboard = async (req, res) => {
@@ -83,17 +84,25 @@ module.exports.dashboard = async (req, res) => {
   });
 
   const totalRevenue = completedOrders.reduce((acc, order) => {
-    const orderTotal = order.products.reduce((sum, product) => {
-      const priceAfterDiscount = productHelper.priceNewProduct(product);
-      return sum + priceAfterDiscount * product.quantity;
-    }, 0);
+    const orderTotal = orderHelper.orderTotalPrice(order);
     return acc + orderTotal;
   }, 0);
+
+  const monthlyRevenue = Array(12).fill(0);
+
+  completedOrders.forEach((order) => {
+    const month = order.updatedAt.getMonth();
+
+    const orderTotal = orderHelper.orderTotalPrice(order);
+
+    monthlyRevenue[month] += orderTotal;
+  });
 
   res.render("admin/pages/dashboard/index", {
     pageTitle: "Trang tổng quan",
     statistic: statistic,
     productFeatured: productFeatured,
     totalRevenue: totalRevenue,
+    monthlyRevenue: monthlyRevenue,
   });
 };

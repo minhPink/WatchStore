@@ -51,6 +51,9 @@ block main
     each product in productFeatured
         div(class="product" data-product=product.sold)
         div(class="product" data-title=product.title)
+    
+    each monthRevenue, index in monthlyRevenue
+        div(class="month" data-month=index+1 data-revenue=monthRevenue)
         
 
 
