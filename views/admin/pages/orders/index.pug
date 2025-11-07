@@ -17,22 +17,21 @@ block main
                     thead 
                         tr 
                             th.text-center.align-middle STT 
-                            th.text-center.align-middle Tên người đặt hàng
-                            th.text-center.align-middle Sản phẩm
-                            th.text-center.align-middle Giá tiền 
-                            th.text-center.align-middle Địa chỉ
+                            th.text-center.align-middle Khách hàng
+                            th.text-center.align-middle Tổng tiền 
                             th.text-center.align-middle Thời gian đặt
                             th.text-center.align-middle Trạng thái
+                            th.text-center.align-middle Hành động
                     tbody 
                         each order, index in orders 
                             tr 
                                 td.text-center.align-middle #{index + 1} 
                                 td.text-center.align-middle #{order.userInfo.fullName}
-                                td.text-center.align-middle
-                                    each product in order.products
-                                        p #{product.productInfo.title} x#{product.quantity}
+                                //- td.text-center.align-middle
+                                //-     each product in order.products
+                                //-         p #{product.productInfo.title} x#{product.quantity}
                                 td.text-center.align-middle #{order.totalPrice.toLocaleString('vi-VN')} VNĐ
-                                td.text-center.align-middle #{order.userInfo.address}
+                                //- td.text-center.align-middle #{order.userInfo.address}
                                 td.text-center.align-middle
                                     +formatDateTime(order.createdAt)
                                 td.text-center.align-middle
@@ -46,7 +45,8 @@ block main
                                         option(class="badge badge-success" value="success" selected=(order.status === "success")) Thành công
                                         option(class="badge badge-danger" value="refuse" selected=(order.status === "refuse")) Từ chối
                                         option(class="badge badge-warning" value="pending" selected=(order.status === "pending")) Chờ xử lý
-
+                                td.text-center.align-middle
+                                    button.btn.btn-info(type="button") Chi tiết
     form(
         action=""
         form-change-statusOrder 
