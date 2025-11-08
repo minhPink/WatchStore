@@ -46,7 +46,18 @@ block main
                                         option(class="badge badge-danger" value="refuse" selected=(order.status === "refuse")) Từ chối
                                         option(class="badge badge-warning" value="pending" selected=(order.status === "pending")) Chờ xử lý
                                 td.text-center.align-middle
-                                    button.btn.btn-info(type="button") Chi tiết
+                                    button.btn.btn-info.btn-detail(type="button" data-address=order.userInfo.address data-user=order.userInfo.fullName) Chi tiết
+                                        each product in order.productsForPug
+                                            div(
+                                            data-title=product.title
+                                            data-thumbnail=product.thumbnail
+                                            data-quantity=product.quantity
+                                            data-price=product.price
+                                            ) 
+
+                            tr.expanded-row
+                                td(colspan="6")
+                                    .expand-content
     form(
         action=""
         form-change-statusOrder 

@@ -15,6 +15,13 @@ module.exports.index = async (req, res) => {
         (sum, item) => sum + item.totalPrice,
         0
       );
+
+      order.productsForPug = order.products.map((item) => ({
+        title: item.productInfo.title,
+        thumbnail: item.productInfo.thumbnail,
+        quantity: item.quantity,
+        price: item.totalPrice, // hoặc item.productInfo.newPrice nếu muốn giá đơn lẻ
+      }));
     }
   }
 
