@@ -255,6 +255,16 @@ body {
   font-weight: bold;
   font-size: 20px;
 }
+.box-head button.btn.btn-light {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  font-size: 15px;
+  margin-right: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
 
 /* End Box-head */
 
