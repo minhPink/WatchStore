@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/box-head-home.pug
 include ../../mixins/product-layout.pug
 include ../../mixins/sort-select.pug
 include ../../mixins/alert.pug
@@ -11,7 +12,7 @@ block main
     .container.my-3.hot#products
         .row 
             .col-12 
-                +box-head("⚡️ Sản phẩm bán chạy 🔥")
+                +box-head-home("⚡️ Sản phẩm bán chạy 🔥")
         +product-grid(productsFeatured)
 
     hr

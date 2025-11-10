@@ -30,16 +30,35 @@ module.exports.index = async (req, res) => {
   // Lay ra san pham moi nhat
 
   //sort-select
-  let sort = formSelectHelper(req);
+  // let sort = formSelectHelper(req);
 
-  const productsNew = await Product.find({
-    deleted: false,
-    status: "active",
-  })
-    .sort(sort)
-    .limit(20);
+  // const productsNew = await Product.find({
+  //   deleted: false,
+  //   status: "active",
+  // })
+  //   .sort(sort)
+  //   .limit(20);
 
-  const newProductsNew = productHelper.priceNewProducts(productsNew);
+  // const newProductsNew = productHelper.priceNewProducts(productsNew);
+
+  // button-price-filter
+  const query = { deleted: false, status: "active" };
+  const priceFilter = req.query.price || "";
+
+  // Lọc giá
+  if (priceFilter === "under-10") {
+    query.price = { $lt: 10_000_000 };
+  } else if (priceFilter === "10-30") {
+    query.price = { $gte: 10_000_000, $lte: 30_000_000 };
+  } else if (priceFilter === "above-30") {
+    query.price = { $gt: 30_000_000 };
+  } else if (priceFilter === "sale") {
+    query.discountPercentage = { $gt: 0 };
+  }
+
+  const sort = formSelectHelper(req);
+  const products = await Product.find(query).sort(sort);
+  const newProductsNew = productHelper.priceNewProducts(products);
   res.render("client/pages/home/index", {
     pageTitle: "Trang chủ",
     productsFeatured: newProducts,

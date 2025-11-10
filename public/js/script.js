@@ -62,3 +62,23 @@ if (formSort) {
   });
 }
 // END FORM SORT
+
+// FILTER PRICE BUTTONS
+const priceButtons = document.querySelectorAll(
+  ".box-head button.btn.btn-light"
+);
+
+if (priceButtons) {
+  let url = new URL(window.location.href);
+
+  priceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const priceFilter = button.getAttribute("data-price");
+
+      url.searchParams.set("price", priceFilter);
+      window.location.href = url;
+    });
+  });
+}
+
+// End FILTER PRICE BUTTONS
