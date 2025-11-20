@@ -64,9 +64,7 @@ if (formSort) {
 // END FORM SORT
 
 // FILTER PRICE BUTTONS
-const priceButtons = document.querySelectorAll(
-  ".box-head button.btn.btn-light"
-);
+const priceButtons = document.querySelectorAll(".btn.btn-light[data-price]");
 
 if (priceButtons) {
   let url = new URL(window.location.href);

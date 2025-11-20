@@ -21,6 +21,7 @@ block main
         .row 
             .col-8
                 +box-head("Sản phẩm mới")
+                include ../../partials/button-price.pug
             .col-4
                 +sort-select()
         +product-grid(productsNew)
